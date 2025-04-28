@@ -70,15 +70,15 @@ const cardData = [
 const FeaturedSection = () => {
   return (
     <div className=" w-full bg-[#090214]">
-      <div className="w-full flex flex-col justify-center  h-[40vh] items-center">
-        <div className="w-[55%] text-center text-white">
-          <h1 className="text-[1.2vw] text-[#FD7EC1]">Featured Project</h1>
-          <div className="w-full py-5 leading-none font-bold text-[2.5vw]">
+      <div className="w-full flex flex-col justify-center h-[40vh] items-center">
+        <div className="w-full md:w-[55%] text-center text-white">
+          <h1 className="text-[3vw] md:text-[1.2vw] text-[#FD7EC1]">Featured Project</h1>
+          <div className="w-full py-5 leading-none font-bold text-[5.5vw] md:text-[2.5vw]">
             Unleashing the Power of Innovation and Creativity.
           </div>
         </div>
       </div>
-      <div className="w-full grid grid-cols-3 gap-x-8 gap-y-8 px-[3rem]">
+      <div className="w-full grid grid-cols-1  md:grid-cols-3 gap-x-8 gap-y-8 px-[4vw] md:px-[3rem]">
         {cardData.map((item, index) => (
           <div
             key={index}
@@ -86,10 +86,10 @@ const FeaturedSection = () => {
           >
             {/* Heading */}
             <div className="heading bg-gradient-to-r from-[#403552] to-[#090214] w-full h-[15vh] px-[2vw] flex flex-col justify-center">
-              <div className="text-[#FD7EC1] text-[1.2vw] uppercase font-bold">
+              <div className="text-[#FD7EC1] text-[2.5vw] md:text-[1.2vw] uppercase font-bold">
                 {item.title}
               </div>
-              <div className="text-[1.9vw] text-white font-medium">{item.subtitle}</div>
+              <div className="text-[4vw] md:text-[1.9vw] text-white font-medium">{item.subtitle}</div>
             </div>
 
             {/* Image */}
@@ -102,23 +102,23 @@ const FeaturedSection = () => {
             </div>
 
             {/* About Info */}
-            <div className="aboutinfo absolute bottom-[-40%] w-full h-[60vh] bg-[#090214]/30 group-hover:bottom-0 transition-all duration-500 ease-in-out p-4">
+            <div className="aboutinfo absolute bottom-[-40%] w-full h-[60vh] bg-[#090214]/70 group-hover:bottom-0 transition-all duration-500 ease-in-out p-4">
               <div className="grid grid-cols-2 gap-y-2 py-2">
                 <div>
                   <h1 className="text-[#FD7EC1] font-medium">Client</h1>
-                  <h1 className="text-white text-[1.2vw] font-medium tracking-tighter">
+                  <h1 className="text-white text-[3vw] md:text-[1.2vw] font-medium tracking-tighter">
                     {item.client}
                   </h1>
                 </div>
                 <div>
                   <h1 className="text-[#FD7EC1]">Date</h1>
-                  <h1 className="text-white text-[1.2vw] font-medium">
+                  <h1 className="text-white text-[3vw] md:text-[1.2vw] font-medium">
                     {item.date}
                   </h1>
                 </div>
                 <div>
                   <h1 className="text-[#FD7EC1]">Budget</h1>
-                  <h1 className="text-white text-[1.2vw] font-medium">
+                  <h1 className="text-white text-[3vw] md:text-[1.2vw] font-medium">
                     {item.budget}
                   </h1>
                 </div>
