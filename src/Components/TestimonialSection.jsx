@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -34,6 +38,39 @@ const testimonials = [
 ];
 
 export default function TestimonialSection() {
+
+  const headingone = useRef(null);
+  const TestimonialSectionref = useRef(null);
+
+
+    useEffect(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: TestimonialSectionref.current,
+          start: "top 80%",
+          end: "top 60%",
+          toggleActions: "play none none none",
+          // markers:true
+        },
+      });
+
+      tl.fromTo(
+        headingone.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+      )
+
+
+    },[])
+
+
+
+
+
+
+
+
+
   const [page, setPage] = useState(0);
   const testimonialsPerPage = 3;
   const pages = Math.ceil(testimonials.length / testimonialsPerPage);
@@ -47,9 +84,9 @@ export default function TestimonialSection() {
   );
 
   return (
-    <section className="bg-[#26152F] py-16 px-4 md:px-8 text-center text-white">
+    <section ref={TestimonialSectionref} className="bg-[#26152F] py-16 px-4 md:px-8 text-center text-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8 border-b-2 border-white pb-8 mb-8">
-        <h2 className="text-2xl md:text-4xl font-bold mb-4">Client Feedback & Reviews</h2>
+        <h2 ref={headingone} className="text-2xl md:text-4xl font-bold mb-4">Client Feedback & Reviews</h2>
         <p className="text-sm md:text-base text-left mb-8 font-semibold">
           <span className="text-yellow-400 text-xl md:text-2xl px-1 mr-2 border-r-2 border-white">5.00 ★</span> 5 reviews
         </p>

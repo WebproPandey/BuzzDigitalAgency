@@ -13,15 +13,15 @@ import Excellence from '../Components/Excellence'
 
 const Home = () => {
   return (
-    <div className='w-full'>
+    <div className='w-full overflow-x-hidden'>
       <HeroSection/>
       <SecondSection/>
+      <DigitalSection/>
       <ServicesSection/>
       <FourthSection/>
-       <Navigating/>
+      <Navigating/>
       <FeaturedSection/>
       <TestimonialSection/>
-      <DigitalSection/>
       <Excellence/>
       <Sucess/>
       <Fotter/>

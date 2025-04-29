@@ -1,14 +1,107 @@
 // Cards.jsx
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Logo from "../assets/Boost.png";
 import Mobile from "../assets/mobile_app.png";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Navigating = () => {
+
+  const  Navigating =  useRef(null)
+  const  leftcard =  useRef(null)
+  const  boostcard =  useRef(null)
+  const  boostcardimg =  useRef(null)
+  const  phonecard =  useRef(null)
+  const  responviecard =  useRef(null)
+  const  responviecardtwo =  useRef(null)
+
+  useEffect(() => {
+
+  
+  var tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: Navigating.current,
+      start: "top 80%",
+      end: "top 50%",
+      toggleActions: "play none none none",
+      // markers:true,
+    },
+  })
+
+  tl.fromTo(
+    leftcard.current,
+    { opacity: 0, x: -40 },
+    {
+      opacity: 1,
+      x: 0,
+      ease: "power3.out",
+     
+    }
+  )
+  tl.fromTo(
+    boostcard.current,
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1,
+      y: 0,
+      ease: "power3.out",
+     
+    }
+  );  
+  tl.fromTo(
+    boostcardimg.current,
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1,
+      y: 0,
+      ease: "power3.out",
+     
+    }
+  )
+  tl.fromTo(
+    phonecard.current,
+    { opacity: 0, y: -40 },
+    {
+      opacity: 1,
+      y: 0,
+      ease: "power3.out",
+     
+    }
+  ); 
+  tl.fromTo(
+    responviecard.current,
+    { opacity: 0, x: -40 },
+    {
+      opacity: 1,
+      x: 0,
+      ease: "power3.out",
+     
+    }
+  )
+  tl.fromTo(
+    responviecardtwo.current,
+    { opacity: 0, y: -40 },
+    {
+      opacity: 1,
+      y: 0,
+      ease: "power3.out",
+     
+    }
+  )
+  
+},[])
+  
   return (
-    <div className=" bg-[#0F0520] px-[3vw] md:p-10 flex flex-col items-center">
+    <div ref={Navigating} className=" Navigating bg-[#0F0520] px-[3vw] md:p-10 flex flex-col items-center">
+       
       <div className="flex flex-col md:flex-row gap-8 w-full max-w-7xl">
+
         <div className="flex flex-col gap-8 flex-[3]">
           <div className="flex flex-col md:flex-row  gap-6">
-            <div className="flex-[3] bg-gradient-to-br from-[#14062C] via-[#270957] to-[#30096C] text-white px-8 py-16 rounded-xl shadow-md">
+            <div  ref={leftcard} className="leftcard flex-[3] bg-gradient-to-br from-[#14062C] via-[#270957] to-[#30096C] text-white px-8 py-16 rounded-xl shadow-md">
               <h2 className="text-2xl font-bold mb-4 text-[#B47CFD]">
                 Timely and Transparent Communication
               </h2>
@@ -22,7 +115,7 @@ const Navigating = () => {
               </button>
             </div>
 
-            <div className="flex-[2] bg-[#2B2338]  text-white  rounded-xl shadow-md flex flex-col justify-between">
+            <div ref={boostcard} className="boostcard flex-[2] bg-[#2B2338]  text-white  rounded-xl shadow-md flex flex-col justify-between">
               <div className="w-52 p-3 px-1">
                 <h2 className="text-2xl font-bold p-6 mb-1 text-white">
                   Boost Traffic & Sales
@@ -34,17 +127,20 @@ const Navigating = () => {
               </div>
               <div className="flex justify-center relative h-[40vh] md:h-fit ">
                 <img
-                  className=" md:w-96 w-full  rounded-xl  absolute bottom-0 z-[88] md:h-[31vw]"
+                ref={boostcardimg}
+                  className="boostcardimg md:w-96 w-full  rounded-xl  absolute bottom-0 z-[88] md:h-[31vw]"
                   src={Logo}
                   alt=""
                 />
               </div>
             </div>
+
           </div>
 
           <div className="flex flex-col md:flex-row  gap-6">
             <div
-              className="flex-[2] bg-[#140925] text-white p-9 rounded-xl shadow-md"
+            ref={responviecard}
+              className="responviecard flex-[2] bg-[#140925] text-white p-9 rounded-xl shadow-md"
               style={{
                 backgroundImage:
                   "url('https://buzzdigitalagency.com/wp-content/uploads/2024/12/bg_pattern.png')",
@@ -65,7 +161,7 @@ const Navigating = () => {
               </button>
             </div>
 
-            <div className="flex-[3] flex items-center justify-between bg-gradient-to-br from-[#A16DE6] to-[#522F82] text-white px-6 py-8 rounded-xl shadow-md relative overflow-hidden">
+            <div ref={responviecardtwo} className="responviecardtwo flex-[3] flex items-center justify-between bg-gradient-to-br from-[#A16DE6] to-[#522F82] text-white px-6 py-8 rounded-xl shadow-md relative overflow-hidden">
               <div className="max-w-[46%]">
                 <h2 className="text-md md:text-2xl font-bold mb-4 leading-5 text-purple-300">
                   Responsive and Scalable Solutions
@@ -92,8 +188,8 @@ const Navigating = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 flex-[1] justify-center items-center">
-          <div className="bg-gradient-to-b from-[#B97CF8] to-[#EB7ED3] text-white p-10 rounded-xl shadow-md w-full flex flex-col items-center justify-center h-full">
+        <div className=" flex flex-col gap-6 flex-[1] justify-center items-center">
+          <div ref={phonecard} className="phonecard bg-gradient-to-b from-[#B97CF8] to-[#EB7ED3] text-white p-10 rounded-xl shadow-md w-full flex flex-col items-center justify-center h-full">
             <div className="text-5xl mb-4">📞</div> 
             <h2 className="text-2xl font-bold mb-4 text-center">
               Premium Support

@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 const cardData = [
   {
     title: "Search Engine Optimization",
@@ -68,17 +72,77 @@ const cardData = [
 ];
 
 const FeaturedSection = () => {
+  const headingone = useRef(null);
+  const headingtwo = useRef(null);
+  const FeaturedSection = useRef(null);
+  const cardContainerRef  = useRef(null)
+
+
+  useEffect(() =>{
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: FeaturedSection.current,
+        start: "top 80%",
+        end: "top 70%",
+        toggleActions: "play none none none",
+        // markers:true,
+      },
+    })
+    tl.fromTo(
+      headingone.current,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+       
+      }
+    );
+    tl.fromTo(
+      headingtwo.current,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+       
+      }
+    )
+    const cards = cardContainerRef.current.querySelectorAll(".Card");
+    gsap.fromTo(
+      cards,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: cardContainerRef.current,
+          start: "top 80%",
+          end: "bottom 60%",
+          toggleActions: "play none none none",
+          // markers: true,
+        },
+      })
+
+  },[])
   return (
-    <div className=" w-full bg-[#090214]">
+    <div ref={FeaturedSection} className=" w-full bg-[#090214]">
       <div className="w-full flex flex-col justify-center h-[40vh] items-center">
         <div className="w-full md:w-[55%] text-center text-white">
-          <h1 className="text-[3vw] md:text-[1.2vw] text-[#FD7EC1]">Featured Project</h1>
-          <div className="w-full py-5 leading-none font-bold text-[5.5vw] md:text-[2.5vw]">
+          <h1 ref={headingone} className="text-[3vw] md:text-[1.2vw] text-[#FD7EC1]">Featured Project</h1>
+          <div ref={headingtwo} className="w-full py-5 leading-none font-bold text-[5.5vw] md:text-[2.5vw]">
             Unleashing the Power of Innovation and Creativity.
           </div>
         </div>
       </div>
-      <div className="w-full grid grid-cols-1  md:grid-cols-3 gap-x-8 gap-y-8 px-[4vw] md:px-[3rem]">
+      <div 
+      ref={cardContainerRef}
+      className="w-full grid grid-cols-1  md:grid-cols-3 gap-x-8 gap-y-8 px-[4vw] md:px-[3rem]">
         {cardData.map((item, index) => (
           <div
             key={index}
